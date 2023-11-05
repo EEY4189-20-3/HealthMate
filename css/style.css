@@ -451,147 +451,29 @@ a {
 
 
 /*---------------------------------------
-    Price section              
------------------------------------------*/
-#price {
-  background: url('../images/price-bg.jpg') 50% 0 repeat-y fixed;
-    -webkit-background-size: cover;
-    background-size: cover;
-    background-position: center center;
-    color: #ffffff;
+    Services section       
+-----------------------------------------*/   
+.services{
+  margin: 60px;
 }
 
-#price .pricing__item {
-  position: relative;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: stretch;
-  align-items: stretch;
-  text-align: center;
-  -webkit-flex: 0 1 330px;
-  flex: 0 1 330px;
+.services .box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+  gap:2rem;
+  width: 400px;
+  float: left;
+  margin: 20px;
 }
 
-#price .pricing__feature-list {
-  text-align: left;
+.services .box-container .box{
+  background: #fff;
+  border-radius: .5rem;
+  font-size: 45px;
+  box-shadow: var(--box-shadow);
+  border: 4px solid #3e1dcd;
+  padding: 2.5rem;
 }
-
-#price .pricing__action {
-  color: inherit;
-  border: none;
-  background: none;
-}
-
-#price .pricing__action:focus {
-  outline: none;
-}
-
-#price .pricing__item {
-  font-size: 20px;
-  margin-top: 72px;
-  padding: 2em;
-  cursor: default;
-  color: #fff;
-  border: 1px solid #666;
-  -webkit-transition: background-color 0.6s, color 0.3s;
-  transition: background-color 0.6s, color 0.3s;
-}
-
-#price .pricing__item:nth-child(2) {
-  border-right: none;
-  border-left: none;
-}
-
-#price .pricing__item:hover {
-  color: #444;
-  background: #ffffff;
-  border-color: transparent;
-}
-
-#price .pricing__title {
-  font-size: 2em;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-#price .pricing__price {
-  font-size: 1.45em;
-  font-weight: bold;
-  line-height: 120px;
-  width: 120px;
-  height: 120px;
-  margin: 1.15em auto 0.3em;
-  border-radius: 50%;
-  background: #ffffff;
-  -webkit-transition: color 0.3s, background 0.3s;
-  transition: color 0.3s, background 0.3s;
-}
-
-#price .pricing__item:first-child .pricing__price {
-  background: #26253a;
-}
-
-#price .pricing__item:nth-child(2) .pricing__price {
-  background: #26253a;
-}
-
-#price .pricing__item:hover .pricing__price {
-  color: #fff;
-  background: #222;
-}
-
-#price .pricing__feature-list {
-  margin: 0;
-  padding: 1em 1em 2em 1em;
-  font-weight: bold;
-  list-style: none;
-  letter-spacing: 0.6px;
-  line-height: 32px;
-  text-align: center;
-}
-
-#price .pricing__action {
-  font-weight: bold;
-  margin-top: auto;
-  padding: 18px 48px;
-  opacity: 0;
-  color: #fff;
-  font-size: 20px;
-  background: #26253a;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
-  transition: transform 0.3s, opacity 0.3s;
-  -webkit-transform: translate3d(0, -15px, 0);
-  transform: translate3d(0, -15px, 0);
-}
-
-#price .pricing__item:hover .pricing__action {
-  opacity: 1;
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-}
-
-#price .pricing__action:hover,
-#price .pricing__action:focus {
-  background: #222;
-}
-
-@media screen and (max-width: 60em) {
-  #price .pricing__item {
-    max-width: none;
-    width: 100%;
-    flex: none;
-  }
-  #price .pricing__item:nth-child(2) {
-    border: 1px solid #fff;
-  }
-}
-
-
 
 /*---------------------------------------
     Testimonial section              
