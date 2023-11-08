@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/appoimnet.css">
+    <title>Doctor Appointments</title>
+</head>
+<body>
+    <div class="doctor-appointments">
+        <div class="doctor-info">
+            <div class="card__container swiper">
+                <div class="card__content">
+                   <div class="swiper-wrapper">
+                      <article class="card__article swiper-slide">
+                         <div class="card__image">
+                            <img src="assets/img/avatar-1.png" alt="image" class="card__img">
+                            <div class="card__shadow"></div>
+                         </div>
+    
+                         <div class="card__data">
+                            <h3 class="card__name">Kell Dawx</h3>
+
+                         </div>
+                      </article>
+        <table class="appointment-table">
+            <tr>
+                <th>Date</th>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Active Appointments</th>
+                <th>Available</th>
+                <th>Book</th>
+            </tr>
+            <tr>
+                <td id="date1">Loading...</td>
+                <td id="day1">Loading...</td>
+                <td>05:30 PM</td>
+                <td>00</td>
+                <td>AVAILABLE</td>
+                <td><button class="book-button" onclick="bookAppointment(1)">Book</button></td>
+            </tr>
+
+            <!-- Add more appointment rows as needed -->
+            <tr>
+                <td id="date2">Loading...</td>
+                <td id="day2">Loading...</td>
+                <td>05:30 PM</td>
+                <td>00</td>
+                <td>AVAILABLE</td>
+                <td><button class="book-button" onclick="bookAppointment(2)">Book</button></td>
+            </tr>
+            <tr>
+                <td id="date3">Loading...</td>
+                <td id="day3">Loading...</td>
+                <td>05:30 PM</td>
+                <td>00</td>
+                <td>AVAILABLE</td>
+                <td><button class="book-button" onclick="bookAppointment(3)">Book</button></td>
+            </tr>
+            <tr>
+                <td id="date4">Loading...</td>
+                <td id="day4">Loading...</td>
+                <td>05:30 PM</td>
+                <td>00</td>
+                <td>AVAILABLE</td>
+                <td><button class="book-button" onclick="bookAppointment(4)">Book</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <!--<script>
+        function bookAppointment(appointmentNumber) {
+            // You can handle the booking logic here
+            // For example, you can navigate to a booking page with the selected date and time
+            const dateElement = document.getElementById(`date${appointmentNumber}`);
+            const dayElement = document.getElementById(`day${appointmentNumber}`);
+            const date = dateElement.textContent;
+            const time = "05:30 PM"; // You can customize the time
+            const dateTime = `${date} ${time}`;
+            window.location.href = `booking.html?dateTime=${encodeURIComponent(dateTime)}`;
+        }
+
+        // Function to update the date and day for each appointment
+        function updateDates() {
+            const today = new Date();
+            for (let i = 1; i <= 4; i++) {
+                const appointmentDate = new Date(today);
+                appointmentDate.setDate(appointmentDate.getDate() + i);
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                const dateElement = document.getElementById(`date${i}`);
+                const dayElement = document.getElementById(`day${i}`);
+                dateElement.textContent = appointmentDate.toLocaleDateString(undefined, options);
+                dayElement.textContent = appointmentDate.toLocaleDateString('en-US', { weekday: 'short' });
+            }
+        }
+
+        // Call the updateDates function to initialize the dates
+        updateDates();
+    </script>-->
+
+    <script>
+        function bookAppointment(appointmentNumber) {
+            // You can handle the booking logic here
+            // For example, you can navigate to a booking page with the selected date and time
+            const dateElement = document.getElementById(`date${appointmentNumber}`);
+            const dayElement = document.getElementById(`day${appointmentNumber}`);
+            const date = dateElement.textContent;
+            const time = "05:30 PM"; // You can customize the time
+            const dateTime = `${date} ${time}`;
+
+            // Navigate to the "bookform" page and pass the selected date and time as a query parameter
+            window.location.href = `bookform.html?dateTime=${encodeURIComponent(dateTime)}`;
+        }
+        // Function to update the date and day for each appointment
+        function updateDates() {
+            const today = new Date();
+            for (let i = 1; i <= 4; i++) {
+                const appointmentDate = new Date(today);
+                appointmentDate.setDate(appointmentDate.getDate() + i);
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                const dateElement = document.getElementById(`date${i}`);
+                const dayElement = document.getElementById(`day${i}`);
+                dateElement.textContent = appointmentDate.toLocaleDateString(undefined, options);
+                dayElement.textContent = appointmentDate.toLocaleDateString('en-US', { weekday: 'short' });
+            }
+        }
+
+        // Call the updateDates function to initialize the dates
+        updateDates();
+    </script>
+</body>
+</html>
