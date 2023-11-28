@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 
 import java.util.Objects;
-
+// Author- Thusith Wickramasinghe
 
 @Controller
 public class HomeController {
@@ -65,19 +65,19 @@ public class HomeController {
     @GetMapping("/userProfile")
     public String userProfile() {
         // Logic for handling requests to the admin panel
-        return "userProfile"; // Return the name of the HTML template (adminPanel.html)
+        return "userProfile"; // Return the name of the HTML template (userProfile.html)
     }
 
     @GetMapping("/bookForm")
     public String bookForm() {
         // Logic for handling requests to the admin panel
-        return "bookForm"; // Return the name of the HTML template (adminPanel.html)
+        return "bookForm"; // Return the name of the HTML template (bookForm.html)
     }
 
     @PostMapping("/Location")
     public String Location() {
         // Logic for handling requests to the admin panel
-        return "Location"; // Return the name of the HTML template (adminPanel.html)
+        return "Location"; // Return the name of the HTML template (Location.html)
     }
 }
 
