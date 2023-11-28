@@ -19,20 +19,20 @@ public class AppointmentService {
     public void processAppointment(AppointmentDto appointmentDto) {
         validateAppointmentDto(appointmentDto);
 
-        Appointment appointment = new Appointment();
-        appointment.setPatientName(appointmentDto.getPatientName());
-        appointment.setPhoneNumber(appointmentDto.getPhoneNumber());
-        appointment.setAddress(appointmentDto.getAddress());
-        appointment.setEmail(appointmentDto.getEmail());
+        appointment.setPatientName(appointment.getPatientName());
+        appointment.setPhoneNumber(appointment.getPhoneNumber());
+        appointment.setAddress(appointment.getAddress());
+        appointment.setEmail(appointment.getEmail());
+        appointment.setLocation(appointment.getLocation());
+        appointment.setAppointmentDate(appointment.getAppointmentDate());
+        appointment.setAppointmentTime(appointment.getAppointmentTime());
 
         appointmentRepository.save(appointment);
     }
 
     private void validateAppointmentDto(AppointmentDto appointmentDto) {
-        // Add validation logic here (e.g., check for empty fields, valid email format, etc.)
-        // You can use Spring's validation annotations in the RegistrationDto class or custom logic.
 
-        // Example validation for non-empty fields
+        // validation for non-empty fields
         if (appointmentDto.getPatientName() == null || appointmentDto.getPatientName().isEmpty()) {
             throw new IllegalArgumentException("Patient name cannot be empty");
         }
