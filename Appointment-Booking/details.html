@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Add your meta tags and other head elements if necessary -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/appointment.css">
+    <title>Doctor Appointments</title>
+</head>
+<body>
+<div class="doctor-appointments">
+    <div class="doctor-info">
+        <div class="card__container swiper">
+            <div class="card__content">
+                <div class="swiper-wrapper" id="doctorDetails">
+                    <!-- JavaScript will dynamically populate this section with doctor details -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="appointment-table">
+        <tr>
+            <th>Date</th>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Active Appointments</th>
+            <th>Available</th>
+            <th>Book</th>
+        </tr>
+        <tr>
+            <td id="date1">Loading...</td>
+            <td id="day1">Loading...</td>
+            <td>05:30 PM</td>
+            <td>00</td>
+            <td>AVAILABLE</td>
+            <td>
+                <form id="appointmentForm" method="post">
+                    <button type="submit" class="book-button">Book</button>
+                </form>
+            </td>
+        </tr>
+
+        <!-- Add more appointment rows as needed -->
+        <tr>
+            <td id="date2">Loading...</td>
+            <td id="day2">Loading...</td>
+            <td>05:30 PM</td>
+            <td>00</td>
+            <td>AVAILABLE</td>
+            <td><button class="book-button" onclick="bookAppointment(2)">Book</button></td>
+        </tr>
+        <tr>
+            <td id="date3">Loading...</td>
+            <td id="day3">Loading...</td>
+            <td>05:30 PM</td>
+            <td>00</td>
+            <td>AVAILABLE</td>
+            <td><button class="book-button" onclick="bookAppointment(3)">Book</button></td>
+        </tr>
+        <tr>
+            <td id="date4">Loading...</td>
+            <td id="day4">Loading...</td>
+            <td>05:30 PM</td>
+            <td>00</td>
+            <td>AVAILABLE</td>
+            <td><button class="book-button" onclick="bookAppointment(4)">Book</button></td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        updateDates();
+        // Extract doctor name and index from the query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const doctorName = urlParams.get('doctorName');
+        const index = urlParams.get('index'); // Assuming you pass 'index' as a query parameter
+
+        document.getElementById('appointmentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            bookAppointment(1);
+        });
+
+        // Get the doctorDetails container
+        const doctorDetailsContainer = document.getElementById('doctorDetails');
+
+        // Populate doctor details dynamically
+        const articleHTML = `
+                <article class="card__article swiper-slide">
+                    <div class="card__image">
+                        <img src="images/avatar-${index +1}.png" alt="image" class="card__img">
+                        <div class="card__shadow"></div>
+                    </div>
+                    <div class="card__data">
+                        <h3 class="card__name">${doctorName}</h3>
+                    </div>
+                </article>
+            `;
+
+        // Append the dynamically generated article to the container
+        doctorDetailsContainer.innerHTML = articleHTML;
+    });
+
+    function bookAppointment(appointmentNumber) {
+        // You can handle the booking logic here
+        // For example, you can navigate to a booking page with the selected date and time
+        const dateElement = document.getElementById(`date${appointmentNumber}`);
+        const dayElement = document.getElementById(`day${appointmentNumber}`);
+        const urlParams = new URLSearchParams(window.location.search);
+        const patientName = urlParams.get('patientName');
+        const phoneNumber = urlParams.get('phoneNumber');
+        const address = urlParams.get('address');
+        const email = urlParams.get('email');
+        const doctorName = urlParams.get('doctorName');
+        const location = urlParams.get('selectedLocation');
+        const date = dateElement.textContent;
+        const time = "17:30";
+        const dateTime = `${date} ${time}`;
+
+        //window.location.href = `bookForm.html?dateTime=${encodeURIComponent(dateTime)}`;
+
+        // Send an asynchronous request to save the appointment details
+        fetch('/appointments/book', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                patientName: patientName,
+                phoneNumber: phoneNumber,
+                address: address,
+                email: email,
+                location: location,
+                doctorName: doctorName,
+                appointmentDate: "2023-11-29",
+                appointmentTime: time,
+            }),
+        })
+
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+
+                // Check if the appointment was successfully booked
+                if (data.success) {
+                    // Redirect to bookForm.html
+                    window.location.replace('/index');
+                } else {
+                    // Handle the case where the appointment was not successful, if needed
+                    console.error('Appointment booking failed:', data.error);
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                // Optionally, you can handle errors (e.g., show an error message to the user)
+            });
+    }
+
+    // Function to update the date and day for each appointment
+    function updateDates() {
+        const today = new Date();
+        for (let i = 1; i <= 4; i++) {
+            const appointmentDate = new Date(today);
+            appointmentDate.setDate(appointmentDate.getDate() + i);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const dateElement = document.getElementById(`date${i}`);
+            const dayElement = document.getElementById(`day${i}`);
+            dateElement.textContent = appointmentDate.toLocaleDateString(undefined, options);
+            dayElement.textContent = appointmentDate.toLocaleDateString('en-US', { weekday: 'short' });
+        }
+    }
+
+    // Call the updateDates function to initialize the dates
+    updateDates();
+
+    document.getElementById('appointmentForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+    });
+</script>
+</body>
+</html>
