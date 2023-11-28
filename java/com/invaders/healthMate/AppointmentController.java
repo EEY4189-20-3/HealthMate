@@ -49,7 +49,7 @@ public class AppointmentController {
     @PostMapping("/book")
     public ResponseEntity<Map<String, Object>> bookAppointment(@RequestBody Appointment appointment) {
         try {
-            // Your logic for booking the appointment
+            // Logic for booking the appointment
             appointmentService.bookAppointment(appointment);
 
             // Construct the success response
